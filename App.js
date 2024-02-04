@@ -10,6 +10,10 @@ import Home from './components/Home';
 import About from './components/About';
 import ContactPage from './components/Contact';
 import Login from './components/Login';
+import { Provider } from 'react-redux';
+import store from './components/redux/store';
+import MyStack from './components/MyStack';
+import Cart from './components/Cart';
 
 
 const Drawer = createDrawerNavigator();
@@ -56,22 +60,32 @@ const MyTabs = () => {
 
         }}
       />
+       <TabNavigator.Screen
+        name="Cart"
+        component={Cart}
+        options={{
+          tabBarLabel: "Contact",
+          tabBarIcon: ({ color }) => <Ionicons name='information-circle' size={32} color={color} />
+
+        }}
+      />
     </TabNavigator.Navigator>
   );
 };
 
 export default function App() {
   return (
-    <NavigationContainer>
+    <Provider store={store}>
+          <NavigationContainer>
       <Drawer.Navigator>
         <Drawer.Screen
           name="Home"
           component={MyTabs}
           options={{
             title: "My Home",
-            drawerLabel: "Dr home",
+            drawerLabel: "Home",
             drawerActiveTintColor: "#333",
-            drawerActiveBackgroundColor: "lightblue",
+            drawerActiveBackgroundColor: "silver",
             drawerContentStyle: {
               backgroundColor: "#c6cbef"
             }
@@ -82,5 +96,6 @@ export default function App() {
         <Drawer.Screen name="Login" component={Login} />
       </Drawer.Navigator>
     </NavigationContainer>
+    </Provider>
   );
 }

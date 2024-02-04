@@ -1,10 +1,38 @@
 import React from "react";
-import { Image, ScrollView, StatusBar, Text, View } from "react-native";
+import { Button, Image, ScrollView, StatusBar, Text, View } from "react-native";
+import Header from "./Header";
+import ProductCategory from "./ProductCategory";
 import Product from "./Product";
 
 export default function Home() {
+  const products= [
+    {
+      id:1,
+      name:'Samsung Mobile',
+      color:'Golden',
+      price:20000,
+      image:'https://i.ibb.co/kBJt8Dn/pexels-tracy-le-blanc-607812.jpg'
+    },
+    {
+      id:2,
+      name:'IPhone Mobile',
+      color:'Black',
+      price:30000,
+      image:'https://i.ibb.co/dcpQMQ7/pexels-pixabay-248526.jpg'
+    },
+    {
+      id:3,
+      name:'Realme Mobile',
+      color:'White',
+      price:3000,
+      image:'https://i.ibb.co/25kHL5y/pexels-jess-bailey-designs-788946.jpg'
+    }
+  ]
   return (
-    <ScrollView style={{ flex: 1, backgroundColor: "black" }}>
+    <View style={{flex:1}}>
+        <Header/>
+        <ScrollView style={{ flex: 1, backgroundColor: "black" }}>
+    
       <View style={{ padding: 20 }}>
         <Text
           style={{
@@ -17,6 +45,7 @@ export default function Home() {
           Welcome to All Essential Bd
         </Text>
         <Text style={{ textAlign: "justify", color: "white" }}>
+        
           Discover a world of convenience at your fingertips with our extensive
           range of daily needs products. At All Essential BD, we understand the
           importance of having easy access to essential items that make your
@@ -26,6 +55,12 @@ export default function Home() {
           style={{ width: "100%", paddingVertical: 50, marginTop: 20 }}
           source={require("../assets/images/dailyneed.jpeg")}
         />
+        <View style={{backgroundColor:'white'}}>
+          
+        {
+          products.map((item)=><Product key={item.id} item={item}/>)
+        }
+        </View>
         <Text
           style={{
             color: "white",
@@ -45,9 +80,9 @@ export default function Home() {
             alignItems: "center",
           }}
         >
-          <Product productName="Daily Needs" />
-          <Product productName="Home Appliance" />
-          <Product productName="Furniture" />
+          <ProductCategory productName="Daily Needs" />
+          <ProductCategory productName="Home Appliance" />
+          <ProductCategory productName="Furniture" />
         </View>
         <Text
           style={{ textAlign: "justify", marginVertical: 20, color: "white" }}
@@ -77,5 +112,6 @@ export default function Home() {
         </Text>
       </View>
     </ScrollView>
+    </View>
   );
 }
