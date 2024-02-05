@@ -1,101 +1,53 @@
 import 'react-native-gesture-handler';
 import { NavigationContainer } from '@react-navigation/native';
+import { createStackNavigator } from '@react-navigation/stack';
+
+
+
+
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View } from 'react-native';
-import { createDrawerNavigator } from '@react-navigation/drawer';
-import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import Ionicons from '@expo/vector-icons/Ionicons';
 
-import Home from './components/Home';
-import About from './components/About';
-import ContactPage from './components/Contact';
-import Login from './components/Login';
 import { Provider } from 'react-redux';
 import store from './components/redux/store';
-import MyStack from './components/MyStack';
-import Cart from './components/Cart';
+import MyDrawer from './components/MyDrawer';
+import CartD from './CartD';
+import Settings from './src/screens/Settings';
+import Main from './src/screens/Main';
+import Home from './components/Home';
 
 
-const Drawer = createDrawerNavigator();
-const TabNavigator = createBottomTabNavigator();
+const Stack = createStackNavigator();
 
-// Define your Tab Navigator
-const MyTabs = () => {
-  return (
-    <TabNavigator.Navigator
-      screenOptions={
-        {
-          // tabBarLabelPosition: "beside-icon",
-          tabBarShowLabel: true,
-          tabBarActiveTintColor: 'purple'
 
-        }
-      }
-    >
-      <TabNavigator.Screen
-        name="My Home"
-        component={Home}
-        options={{
-          tabBarLabel: "Home",
-          tabBarIcon: ({ color }) => <Ionicons name='home' size={32} color={color} />
-
-        }}
-      />
-
-      <TabNavigator.Screen
-        name="About Us"
-        component={About}
-        options={{
-          tabBarLabel: "About",
-          tabBarIcon: ({ color }) => <Ionicons name='information-circle' size={32} color={color} />
-
-        }}
-      />
-      <TabNavigator.Screen
-        name="Contact Us"
-        component={ContactPage}
-        options={{
-          tabBarLabel: "Contact",
-          tabBarIcon: ({ color }) => <Ionicons name='information-circle' size={32} color={color} />
-
-        }}
-      />
-       <TabNavigator.Screen
-        name="Cart"
-        component={Cart}
-        options={{
-          tabBarLabel: "Contact",
-          tabBarIcon: ({ color }) => <Ionicons name='information-circle' size={32} color={color} />
-
-        }}
-      />
-    </TabNavigator.Navigator>
-  );
-};
 
 export default function App() {
   return (
     <Provider store={store}>
-          <NavigationContainer>
-      <Drawer.Navigator>
-        <Drawer.Screen
-          name="Home"
-          component={MyTabs}
-          options={{
-            title: "My Home",
-            drawerLabel: "Home",
-            drawerActiveTintColor: "#333",
-            drawerActiveBackgroundColor: "silver",
-            drawerContentStyle: {
-              backgroundColor: "#c6cbef"
-            }
-          }}
-        />
-        <Drawer.Screen name="About" component={About} />
-        <Drawer.Screen name="Contact" component={ContactPage} />
-        <Drawer.Screen name="Login" component={Login} />
-      </Drawer.Navigator>
-    </NavigationContainer>
+      <NavigationContainer>
+        <Stack.Navigator>
+          <Stack.Screen
+            name="Main"
+            component={Main}
+            options={{ headerShown: false }}>
+
+          </Stack.Screen>
+          {/* <Stack.Screen name="Homef" options={{ headerShown: false }}>
+            {() => (
+              <MyDrawer />
+            )}
+          </Stack.Screen> */}
+          {/* <Stack.Screen
+            name="Settings"
+            component={Settings}
+            options={{ headerShown: false }}>
+
+          </Stack.Screen> */}
+
+
+        </Stack.Navigator>
+      </NavigationContainer>
     </Provider>
   );
 }
+
