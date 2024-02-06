@@ -1,10 +1,8 @@
 import React from "react";
 import { createDrawerNavigator } from "@react-navigation/drawer";
 import { Text, View } from "react-native";
-import MyTabs from "../../components/MyTab";
-import AboutUsPage from "../../components/About";
-import ContactPage from "../../components/Contact";
-import Login from "../../components/Login";
+
+
 import HomeScreen from "./HomeScreen";
 const Drawer = createDrawerNavigator();
 const Main = () => {
