@@ -15,6 +15,7 @@ import CartD from './CartD';
 import Settings from './src/screens/Settings';
 import Main from './src/screens/Main';
 import Home from './components/Home';
+import ProductDetail from './src/screens/ProductDetail';
 
 
 const Stack = createStackNavigator();
@@ -29,6 +30,12 @@ export default function App() {
           <Stack.Screen
             name="Main"
             component={Main}
+            options={{ headerShown: false }}>
+
+          </Stack.Screen>
+          <Stack.Screen
+            name="ProductDetail"
+            component={ProductDetail}
             options={{ headerShown: false }}>
 
           </Stack.Screen>

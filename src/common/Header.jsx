@@ -1,3 +1,4 @@
+import { useNavigation } from "@react-navigation/native";
 import React from "react";
 const { height, width } = Dimensions.get("window");
 import { Dimensions, Image, StyleSheet, Text, View } from "react-native";
@@ -10,10 +11,16 @@ const Header = ({
   onClickLeftIcon,
   onClickRightIcon,
 }) => {
+ 
+  const navigation = useNavigation();
   return (
     <View style={styles.header}>
-      <TouchableOpacity style={styles.btn}>
-        <Image style={styles.icon} source={leftIcon} />
+   <TouchableOpacity
+        style={styles.btn}
+        onPress={() => {
+          onClickLeftIcon();
+        }}>
+        <Image source={leftIcon} style={styles.icon} />
       </TouchableOpacity>
       <Text style={styles.title}>{title}</Text>
       <TouchableOpacity style={styles.btn}>

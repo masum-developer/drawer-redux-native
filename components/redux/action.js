@@ -1,18 +1,28 @@
-import { ADD_TO_CART, REMOVE_FROM_CART, } from "./constants";
+import { ADD_TO_CART, ADD_TO_WISHLIST, REMOVE_FROM_CART, REMOVE_FROM_WISHLIST, } from "./constants";
 
 
-export function addToCart(item) {
-    return {
+export const addToCart=data =>({
         type: ADD_TO_CART,
-        data: item
-    }
-}
+        payload: data
+})
 
-export function removeFromCart(item) {
-    return {
+export const removeFromCart=index =>({
+    
         type: REMOVE_FROM_CART,
-        data: item
-    }
-}
+        payload: index
+    
+})
+
+export const addToWishlist=data =>({
+        type: ADD_TO_WISHLIST,
+        payload: data
+
+})
+export const removeFromWishlist=index =>({
+    type: REMOVE_FROM_WISHLIST,
+    payload: index
+
+})
+
 
 
