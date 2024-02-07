@@ -15,6 +15,7 @@ import Settings from './src/screens/Settings';
 import Main from './src/screens/Main';
 import ProductDetail from './src/screens/ProductDetail';
 import store from './src/redux/store';
+import Cart from './src/screens/Cart';
 
 
 const Stack = createStackNavigator();
@@ -32,6 +33,12 @@ export default function App() {
           <Stack.Screen
             name="ProductDetail"
             component={ProductDetail}
+            options={{ headerShown: false }}>
+
+          </Stack.Screen>
+          <Stack.Screen
+            name="Cart"
+            component={Cart}
             options={{ headerShown: false }}>
 
           </Stack.Screen>

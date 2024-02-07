@@ -2,6 +2,7 @@ import React from "react";
 import {
   Button,
   Image,
+  ScrollView,
   StyleSheet,
   Text,
   TouchableOpacity,
@@ -10,18 +11,20 @@ import {
 import Header from "../common/Header";
 import { useNavigation, useRoute } from "@react-navigation/native";
 import CustomButton from "../common/CustomButton";
+import { useDispatch, useSelector } from "react-redux";
+import { addItemToCart } from "../redux/actions/Action";
 
 const ProductDetail = () => {
   const navigation = useNavigation();
   const route = useRoute();
 
-  const item = {
-    id: 3,
-    name: "Realme Mobile",
-    color: "White",
-    price: 3000,
-    image: "https://i.ibb.co/25kHL5y/pexels-jess-bailey-designs-788946.jpg",
-  };
+  const cart = useSelector(state => state.cartReducer);
+  
+  const dispatch = useDispatch();
+
+  const onAddTocart = (item) =>{
+    dispatch(addItemToCart(item))
+  }
 
   return (
     <View style={styles.container}>
@@ -33,7 +36,8 @@ const ProductDetail = () => {
           navigation.goBack();
         }}
       />
-      <Image source={{ uri: route.params.data.image }} style={styles.banner} />
+    <ScrollView>
+    <Image source={{ uri: route.params.data.image }} style={styles.banner} />
       <Text style={styles.title}>{route.params.data.title}</Text>
       <Text style={styles.des}>{route.params.data.description}</Text>
       <View style={{ flexDirection: "row", marginTop: 20 }}>
@@ -43,8 +47,8 @@ const ProductDetail = () => {
       <TouchableOpacity style={styles.wishListBtn}>
         <Image style={styles.icon} source={require("../images/wishlist.png")} />
       </TouchableOpacity>
-      {/* <CustomButton onclick={()=>handleAddToCart(item)} bg={'orange'} title={'Add To Cart'} color={'#fff'}/> */}
-      {/* <Button title="Add To Cart" onClick={() => dispatch()} /> */}
+      <CustomButton onClick ={() => onAddTocart(route.params.data)} bg={'orange'} title={'Add To Cart'} color={'#fff'}/>
+    </ScrollView>
     </View>
   );
 };

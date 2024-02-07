@@ -27,7 +27,8 @@ const Home = () => {
     getProducts();
   }, []);
 
-  const count = useSelector((state) => state.count);
+  const count = useSelector(state => state.counterReducer.count);
+  
   const dispatch = useDispatch();
 
   return (
@@ -40,23 +41,24 @@ const Home = () => {
           navigation.openDrawer();
         }}
       />
-      <View
-        style={{
-          justifyContent: "center",
-          alignItems: "center",
-          marginTop: 30,
-        }}
-      >
-        <Text>Counter: {count}</Text>
-        <Button
-          title="Increment"
-          onPress={() => dispatch({ type: "ADD_TO_CART" })}
-        />
-        <Button
-          title="Decrement"
-          onPress={() => dispatch({ type: "REMOVE_FROM_CART" })}
-        />
-      </View>
+   <View style={{justifyContent: 'center', alignItems: 'center', marginTop:30, marginVertical:20 }}>
+   <Text style={{fontSize:30}}>Counter App</Text>
+      <Text>Counter: {count}</Text>
+     
+      <TouchableOpacity  onPress={() => dispatch({ type: 'INCREMENT' })}>
+        <View style={{width:70,height:30,backgroundColor:'lightblue', margin:30}}>
+        <Text>Increment</Text>
+        </View>
+      </TouchableOpacity>
+      
+
+<TouchableOpacity  onPress={() => dispatch({ type: 'DECREMENT' })}>
+        <View style={{width:70,height:30,backgroundColor:'lightblue'}}>
+        <Text>Decrement</Text>
+        </View>
+      </TouchableOpacity>
+      <Text style={{fontSize:30, marginTop:20}}>Ecommerce App</Text>
+    </View>
       <FlatList
         data={products}
         renderItem={({ item, index }) => {
